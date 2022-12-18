@@ -2,19 +2,14 @@ package dev.nevah5.mc.lobbyplugin;
 
 import dev.nevah5.mc.lobbyplugin.commands.BuildCommand;
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.player.PlayerChangedMainHandEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
+import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class LobbyPlugin extends JavaPlugin implements Listener {
@@ -51,7 +46,13 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
     }
 
     @EventHandler
-    public void onPlayerFight(EntityDamageEvent entityDamageEvent){
+    public void onEntityDamage(EntityDamageEvent entityDamageEvent){
         entityDamageEvent.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onWeatherChange(WeatherChangeEvent weatherChangeEvent){
+        weatherChangeEvent.setCancelled(true);
+        weatherChangeEvent.getWorld().setClearWeatherDuration(9999);
     }
 }
