@@ -18,9 +18,11 @@ public class BuildCommand implements CommandExecutor {
         if(sender instanceof Player) {
             if(lobbyConfig.playersEnableBuilding.contains(((Player) sender).getPlayer())) {
                 lobbyConfig.playersEnableBuilding.remove(((Player) sender).getPlayer());
+                sender.sendMessage(lobbyConfig.PREFIX+"Building has been disabled.");
                 return true;
             }
             lobbyConfig.playersEnableBuilding.add(((Player) sender).getPlayer());
+            sender.sendMessage(lobbyConfig.PREFIX+"Building has been enabled.");
         }
         return true;
     }
