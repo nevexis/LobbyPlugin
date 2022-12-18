@@ -3,3 +3,8 @@ version: 1.0.0
 author: Nevah5
 main: dev.nevah5.mc.lobbyplugin.LobbyPlugin
 api-version: 1.19
+commands:
+  build:
+    description: Toggle building in world
+    usage: /build
+    permission: lobby.build
