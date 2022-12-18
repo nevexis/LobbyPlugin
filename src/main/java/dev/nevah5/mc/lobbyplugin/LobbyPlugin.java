@@ -9,8 +9,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerChangedMainHandEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -45,5 +48,10 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
     public void onHandChangeEvent(PlayerSwapHandItemsEvent playerSwapHandItemsEvent){
         if(!lobbyConfig.playersEnableBuilding.contains(playerSwapHandItemsEvent.getPlayer()))
             playerSwapHandItemsEvent.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onPlayerFight(EntityDamageEvent entityDamageEvent){
+        entityDamageEvent.setCancelled(true);
     }
 }
