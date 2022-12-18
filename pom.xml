@@ -6,7 +6,7 @@
 
     <groupId>dev.nevah5.mc.lobbyplugin</groupId>
     <artifactId>LobbyPlugin</artifactId>
-    <version>1.0</version>
+    <version>b1.0.0</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
