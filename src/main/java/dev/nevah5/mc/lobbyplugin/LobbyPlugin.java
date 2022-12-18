@@ -9,6 +9,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerChangedMainHandEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class LobbyPlugin extends JavaPlugin implements Listener {
@@ -30,5 +33,17 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
     public void onBlockInteract(BlockPlaceEvent blockPlaceEvent){
         if(!lobbyConfig.playersEnableBuilding.contains(blockPlaceEvent.getPlayer()))
             blockPlaceEvent.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onDrop(PlayerDropItemEvent playerDropItemEvent){
+        if(!lobbyConfig.playersEnableBuilding.contains(playerDropItemEvent.getPlayer()))
+            playerDropItemEvent.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onHandChangeEvent(PlayerSwapHandItemsEvent playerSwapHandItemsEvent){
+        if(!lobbyConfig.playersEnableBuilding.contains(playerSwapHandItemsEvent.getPlayer()))
+            playerSwapHandItemsEvent.setCancelled(true);
     }
 }
