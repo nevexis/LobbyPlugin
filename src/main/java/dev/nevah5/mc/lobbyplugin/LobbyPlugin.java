@@ -1,19 +1,20 @@
 package dev.nevah5.mc.lobbyplugin;
 
 import dev.nevah5.mc.lobbyplugin.commands.BuildCommand;
+import dev.nevah5.mc.lobbyplugin.inventory.LobbyInventory;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.*;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerSwapHandItemsEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -98,6 +99,18 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
         if(!lobbyConfig.playersEnableBuilding.contains(player)) {
             inventoryDragEvent.setCancelled(true);
             lobbyInventory.updatePlayer(player);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void clickItem(PlayerInteractEvent playerInteractEvent){
+        Player player = playerInteractEvent.getPlayer();
+        if(playerInteractEvent.getAction() != Action.RIGHT_CLICK_AIR &&
+        playerInteractEvent.getAction() != Action.RIGHT_CLICK_BLOCK) return;
+
+        if(player.getInventory().getItemInMainHand().getType() == Material.COMPASS) {
+            lobbyInventory.openNavigation(player);
+            playerInteractEvent.setCancelled(true); //cancel for world edit tp
         }
     }
 }
