@@ -2,6 +2,7 @@ package dev.nevah5.mc.lobbyplugin;
 
 import dev.nevah5.mc.lobbyplugin.commands.BuildCommand;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -64,6 +65,7 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent playerJoinEvent){
+        Location spawnLoc = new Location(playerJoinEvent.getPlayer().getWorld(), 0.5, 100, 0.5, 180f, 0);
         playerJoinEvent.setJoinMessage(null);
         playerJoinEvent.getPlayer().setSaturation(999999f);
         playerJoinEvent.getPlayer().setFoodLevel(20);
@@ -72,6 +74,7 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
         // Inventory
         playerJoinEvent.getPlayer().getInventory().clear();
         lobbyInventory.updatePlayer(playerJoinEvent.getPlayer());
+        playerJoinEvent.getPlayer().teleport(spawnLoc);
     }
 
     @EventHandler
