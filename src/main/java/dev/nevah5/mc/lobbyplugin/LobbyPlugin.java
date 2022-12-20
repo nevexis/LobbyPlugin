@@ -2,6 +2,7 @@ package dev.nevah5.mc.lobbyplugin;
 
 import dev.nevah5.mc.lobbyplugin.commands.BuildCommand;
 import dev.nevah5.mc.lobbyplugin.inventory.LobbyInventory;
+import dev.nevah5.mc.lobbyplugin.inventory.items.NavigationItem;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -87,6 +88,16 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent inventoryClickEvent){
         Player player = (Player) inventoryClickEvent.getWhoClicked();
+
+        NavigationItem items = new NavigationItem();
+        // check if navigation
+        if(inventoryClickEvent.getCurrentItem().equals(items.getVTMCItem())) {
+            lobbyInventory.updatePlayer(player);
+            player.closeInventory();
+            player.teleport(new Location(player.getWorld(), 0.5, 98, -37.5, 180, 0));
+            return;
+        };
+
         if(!lobbyConfig.playersEnableBuilding.contains(player)) {
             inventoryClickEvent.setCancelled(true);
             inventoryClickEvent.setCurrentItem(null);
