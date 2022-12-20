@@ -12,6 +12,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -75,6 +76,11 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
         playerJoinEvent.getPlayer().getInventory().clear();
         lobbyInventory.updatePlayer(playerJoinEvent.getPlayer());
         playerJoinEvent.getPlayer().teleport(spawnLoc);
+    }
+
+    @EventHandler
+    public void onLeave(PlayerQuitEvent playerQuitEvent){
+        playerQuitEvent.setQuitMessage(null);
     }
 
     @EventHandler
