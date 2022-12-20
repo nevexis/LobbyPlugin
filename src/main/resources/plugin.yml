@@ -8,3 +8,7 @@ commands:
     description: Toggle building in world
     usage: /build
     permission: lobby.build
+permissions:
+  lobby.*:
+    children:
+      lobby.build: true
