@@ -4,6 +4,7 @@ import dev.nevah5.mc.lobbyplugin.commands.BuildCommand;
 import dev.nevah5.mc.lobbyplugin.inventory.LobbyInventory;
 import dev.nevah5.mc.lobbyplugin.inventory.items.NavigationItem;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -123,5 +124,28 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
             lobbyInventory.openNavigation(player);
             playerInteractEvent.setCancelled(true); //cancel for world edit tp
         }
+    }
+
+    @EventHandler
+    public void onMessage(AsyncPlayerChatEvent asyncPlayerChatEvent){
+        String message = asyncPlayerChatEvent.getMessage();
+        Player player = asyncPlayerChatEvent.getPlayer();
+        asyncPlayerChatEvent.setFormat(ChatColor.LIGHT_PURPLE+"%s %s");
+
+        if(player.hasPermission("group.owner")) { // If Player has op
+            asyncPlayerChatEvent.setMessage(lobbyConfig.OWNER_PREFIX + message);
+            return;
+        }
+        if(!player.hasPermission("group.default")) {
+            if (player.hasPermission("group.friend")) {
+                asyncPlayerChatEvent.setMessage(lobbyConfig.FRIEND_PREFIX + message);
+            } else if (player.hasPermission("group.mod")) {
+                asyncPlayerChatEvent.setMessage(lobbyConfig.MOD_PREFIX + message);
+            } else {
+                asyncPlayerChatEvent.setMessage(lobbyConfig.ADMIN_PREFIX + message);
+            }
+            return;
+        }
+        asyncPlayerChatEvent.setMessage(lobbyConfig.DEFAULT_PREFIX + message);
     }
 }
