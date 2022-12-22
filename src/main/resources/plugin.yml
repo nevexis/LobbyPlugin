@@ -6,11 +6,16 @@ api-version: 1.19
 commands:
   build:
     description: Toggle building in world
-    usage: /build
+    usage: /<command>
     permission: lobby.build
+  cc:
+    description: Clears the chat
+    usage: /<command>
+    permission: lobby.chat.clear
 permissions:
   lobby.*:
     description: "The permissions for lobby commands and tools."
     children:
       lobby.build: true
       lobby.chat.colors: true
+      lobby.chat.clear: true

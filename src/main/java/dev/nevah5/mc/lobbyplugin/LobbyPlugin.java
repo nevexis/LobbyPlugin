@@ -1,6 +1,7 @@
 package dev.nevah5.mc.lobbyplugin;
 
 import dev.nevah5.mc.lobbyplugin.commands.BuildCommand;
+import dev.nevah5.mc.lobbyplugin.commands.ChatClear;
 import dev.nevah5.mc.lobbyplugin.inventory.LobbyInventory;
 import dev.nevah5.mc.lobbyplugin.inventory.items.NavigationItem;
 import org.bukkit.Bukkit;
@@ -31,6 +32,7 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(this, this);
         lobbyConfig = new LobbyConfig();
         Objects.requireNonNull(this.getCommand("build")).setExecutor(new BuildCommand(lobbyConfig));
+        Objects.requireNonNull(this.getCommand("cc")).setExecutor(new ChatClear(lobbyConfig));
     }
 
     @EventHandler
