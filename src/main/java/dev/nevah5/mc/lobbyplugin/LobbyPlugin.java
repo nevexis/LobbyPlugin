@@ -150,9 +150,6 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
         if(player.hasPermission("lobby.chat.colors")){
             asyncPlayerChatEvent.setMessage(ChatColor.translateAlternateColorCodes('&',
                     asyncPlayerChatEvent.getMessage()));
-        } else {
-            asyncPlayerChatEvent.setMessage(ChatColor.translateAlternateColorCodes('&',
-                    asyncPlayerChatEvent.getMessage()));
         }
     }
 }
