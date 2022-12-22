@@ -21,6 +21,7 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class LobbyPlugin extends JavaPlugin implements Listener {
     private LobbyConfig lobbyConfig;
@@ -114,7 +115,7 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler
     public void clickItem(PlayerInteractEvent playerInteractEvent){
         Player player = playerInteractEvent.getPlayer();
         if(playerInteractEvent.getAction() != Action.RIGHT_CLICK_AIR &&
@@ -122,30 +123,36 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
 
         if(player.getInventory().getItemInMainHand().getType() == Material.COMPASS) {
             lobbyInventory.openNavigation(player);
-            playerInteractEvent.setCancelled(true); //cancel for world edit tp
         }
     }
 
     @EventHandler
     public void onMessage(AsyncPlayerChatEvent asyncPlayerChatEvent){
-        String message = asyncPlayerChatEvent.getMessage();
         Player player = asyncPlayerChatEvent.getPlayer();
-        asyncPlayerChatEvent.setFormat(ChatColor.LIGHT_PURPLE+"%s %s");
+        String prefix = lobbyConfig.DEFAULT_PREFIX;
 
-        if(player.hasPermission("group.owner")) { // If Player has op
-            asyncPlayerChatEvent.setMessage(lobbyConfig.OWNER_PREFIX + message);
-            return;
+        // Set Prefix of player
+        if(player.hasPermission("group.owner")) {
+            prefix = lobbyConfig.OWNER_PREFIX;
+        } else if(player.hasPermission("group.admin")) {
+            prefix = lobbyConfig.ADMIN_PREFIX;
+        } else if (player.hasPermission("group.mod")) {
+            prefix = lobbyConfig.MOD_PREFIX;
+        } else if (player.hasPermission("group.friend")) {
+            prefix = lobbyConfig.FRIEND_PREFIX;
         }
-        if(!player.hasPermission("group.default")) {
-            if (player.hasPermission("group.friend")) {
-                asyncPlayerChatEvent.setMessage(lobbyConfig.FRIEND_PREFIX + message);
-            } else if (player.hasPermission("group.mod")) {
-                asyncPlayerChatEvent.setMessage(lobbyConfig.MOD_PREFIX + message);
-            } else {
-                asyncPlayerChatEvent.setMessage(lobbyConfig.ADMIN_PREFIX + message);
-            }
-            return;
+
+        // Set message Format
+        asyncPlayerChatEvent.setFormat(prefix + ChatColor.RESET + ChatColor.GRAY +
+                "%s "+ChatColor.DARK_GRAY+">>"+ChatColor.RESET+" %s");
+
+        // Replace message color codes
+        if(player.hasPermission("lobby.chat.colors")){
+            asyncPlayerChatEvent.setMessage(ChatColor.translateAlternateColorCodes('&',
+                    asyncPlayerChatEvent.getMessage()));
+        } else {
+            asyncPlayerChatEvent.setMessage(ChatColor.translateAlternateColorCodes('&',
+                    asyncPlayerChatEvent.getMessage()));
         }
-        asyncPlayerChatEvent.setMessage(lobbyConfig.DEFAULT_PREFIX + message);
     }
 }

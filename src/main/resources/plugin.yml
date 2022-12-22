@@ -12,3 +12,4 @@ permissions:
   lobby.*:
     children:
       lobby.build: true
+      lobby.chat.colors: false
