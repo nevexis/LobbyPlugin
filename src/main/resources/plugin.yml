@@ -12,6 +12,9 @@ commands:
     description: Clears the chat
     usage: /<command>
     permission: lobby.chat.clear
+  spawn:
+    description: Teleports the player to the spawn
+    usage: /<command>
 permissions:
   lobby.*:
     description: "The permissions for lobby commands and tools."
