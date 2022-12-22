@@ -10,6 +10,7 @@ commands:
     permission: lobby.build
 permissions:
   lobby.*:
+    description: "The permissions for lobby commands and tools."
     children:
       lobby.build: true
-      lobby.chat.colors: false
+      lobby.chat.colors: true
