@@ -18,6 +18,7 @@ public class LobbyInventory {
         NavigationItem items = new NavigationItem();
         Inventory inventory = Bukkit.createInventory(null, 9, "Navigation");
         inventory.setItem(4, items.getVTMCItem());
+        inventory.setItem(8, items.getOwnServerItem());
         player.openInventory(inventory);
     }
 }

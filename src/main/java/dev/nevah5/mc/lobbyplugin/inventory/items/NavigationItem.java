@@ -28,4 +28,25 @@ public class NavigationItem {
         item.setItemMeta(meta);
         return item;
     }
+
+    public ItemStack getOwnServerItem(){
+        ItemStack item = new ItemStack(Material.GRASS_BLOCK);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(String.format(
+                "%s▶ %s%sCreate your own Server %s%s(Latest Version) %s◀",
+                ChatColor.DARK_GRAY, ChatColor.GREEN, ChatColor.BOLD, ChatColor.RESET,
+                ChatColor.GRAY, ChatColor.DARK_GRAY)
+        );
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add("");
+        lore.add(ChatColor.GRAY + "≫ This feature is still in development.");
+        lore.add(ChatColor.GRAY + "≫ Once it is finished, friends of Nevah5 will be able.");
+        lore.add(ChatColor.GRAY + "≫ to create their own servers to play on.");
+        lore.add("");
+        lore.add(String.format("%s▶ contact@nevah5.dev ◀", ChatColor.GRAY));
+        meta.setLore(lore);
+
+        item.setItemMeta(meta);
+        return item;
+    }
 }
