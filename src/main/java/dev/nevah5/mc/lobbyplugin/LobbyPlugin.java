@@ -84,6 +84,16 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
         playerJoinEvent.getPlayer().getInventory().clear();
         lobbyInventory.updatePlayer(playerJoinEvent.getPlayer());
         playerJoinEvent.getPlayer().teleport(spawnLoc);
+
+        // welcome message ᐅᐊ
+        for (int i = 0; i < 300; i++){
+            playerJoinEvent.getPlayer().sendMessage("");
+        }
+        playerJoinEvent.getPlayer().sendMessage(String.format("         %sᐅ %s%smc.nevah5.dev %sᐊ", ChatColor.GRAY, ChatColor.BLUE,
+                ChatColor.BOLD, ChatColor.GRAY));
+        playerJoinEvent.getPlayer().sendMessage(String.format("         %sWelcome, %s!", ChatColor.LIGHT_PURPLE,
+                playerJoinEvent.getPlayer().getName()));
+        playerJoinEvent.getPlayer().sendMessage("");
     }
 
     @EventHandler
