@@ -8,6 +8,24 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 
 public class NavigationItem {
+    public ItemStack getSpawnItem(){
+        ItemStack item = new ItemStack(Material.FIRE_CHARGE);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(String.format(
+                "%s▶ %s%sSpawn %s%s◀",
+                ChatColor.DARK_GRAY, ChatColor.YELLOW, ChatColor.BOLD, ChatColor.RESET,
+                ChatColor.DARK_GRAY)
+        );
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add("");
+        lore.add(ChatColor.GRAY + "≫ Hint: /spawn also works :)");
+        lore.add("");
+        meta.setLore(lore);
+
+        item.setItemMeta(meta);
+        return item;
+    }
+
     public ItemStack getVTMCItem(){
         ItemStack item = new ItemStack(Material.BLACK_DYE);
         ItemMeta meta = item.getItemMeta();
@@ -23,6 +41,7 @@ public class NavigationItem {
         lore.add(String.format("%s▶ Server Owners ◀", ChatColor.GRAY));
         lore.add(ChatColor.GRAY+"⬦ JustSpruce");
         lore.add(ChatColor.GRAY+"⬦ Nevah5");
+        lore.add("");
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -44,6 +63,7 @@ public class NavigationItem {
         lore.add(ChatColor.GRAY + "≫ to create their own servers to play on.");
         lore.add("");
         lore.add(String.format("%s▶ contact@nevah5.dev ◀", ChatColor.GRAY));
+        lore.add("");
         meta.setLore(lore);
 
         item.setItemMeta(meta);

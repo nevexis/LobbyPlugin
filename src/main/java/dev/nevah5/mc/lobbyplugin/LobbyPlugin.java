@@ -123,6 +123,10 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
         } else if (inventoryClickEvent.getCurrentItem().equals(items.getOwnServerItem())) {
             inventoryClickEvent.setCancelled(true);
             return;
+        } else if (inventoryClickEvent.getCurrentItem().equals(items.getSpawnItem())) {
+            Location spawnLoc = new Location(player.getWorld(), 0.5, 100, 0.5, 180f, 0);
+            player.teleport(spawnLoc);
+            return;
         }
 
         if(!lobbyConfig.playersEnableBuilding.contains(player)) {
