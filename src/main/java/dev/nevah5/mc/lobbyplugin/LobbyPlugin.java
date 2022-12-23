@@ -74,26 +74,34 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent playerJoinEvent){
-        Location spawnLoc = new Location(playerJoinEvent.getPlayer().getWorld(), 0.5, 100, 0.5, 180f, 0);
+        Player player = playerJoinEvent.getPlayer();
+        Location spawnLoc = new Location(player.getWorld(), 0.5, 100, 0.5, 180f, 0);
         playerJoinEvent.setJoinMessage(null);
-        playerJoinEvent.getPlayer().setSaturation(999999f);
-        playerJoinEvent.getPlayer().setFoodLevel(20);
-        playerJoinEvent.getPlayer().setHealth(20);
-        playerJoinEvent.getPlayer().setInvulnerable(true);
+        player.setSaturation(999999f);
+        player.setFoodLevel(20);
+        player.setHealth(20);
+        player.setInvulnerable(true);
         // Inventory
-        playerJoinEvent.getPlayer().getInventory().clear();
-        lobbyInventory.updatePlayer(playerJoinEvent.getPlayer());
-        playerJoinEvent.getPlayer().teleport(spawnLoc);
+        player.getInventory().clear();
+        lobbyInventory.updatePlayer(player);
+        player.teleport(spawnLoc);
 
         // welcome message ᐅᐊ
         for (int i = 0; i < 300; i++){
-            playerJoinEvent.getPlayer().sendMessage("");
+            player.sendMessage("");
         }
-        playerJoinEvent.getPlayer().sendMessage(String.format("         %sᐅ %s%smc.nevah5.dev %sᐊ", ChatColor.GRAY, ChatColor.BLUE,
+        player.sendMessage(String.format("         %sᐅ %s%smc.nevah5.dev %sᐊ", ChatColor.GRAY, ChatColor.BLUE,
                 ChatColor.BOLD, ChatColor.GRAY));
-        playerJoinEvent.getPlayer().sendMessage(String.format("         %sWelcome, %s!", ChatColor.LIGHT_PURPLE,
+        player.sendMessage(String.format("         %sWelcome, %s!", ChatColor.LIGHT_PURPLE,
                 playerJoinEvent.getPlayer().getName()));
-        playerJoinEvent.getPlayer().sendMessage("");
+        player.sendMessage("");
+
+        // tab list
+        player.setPlayerListHeader(String.format(
+                "         %sᐅ %s%smc.nevah5.dev %sᐊ         \n\n\n",
+                ChatColor.GRAY, ChatColor.BLUE,
+                ChatColor.BOLD, ChatColor.GRAY));
+        player.setPlayerListFooter("\n\n\n");
     }
 
     @EventHandler
