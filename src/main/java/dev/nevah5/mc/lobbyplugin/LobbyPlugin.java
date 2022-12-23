@@ -5,13 +5,13 @@ import dev.nevah5.mc.lobbyplugin.commands.ChatClear;
 import dev.nevah5.mc.lobbyplugin.commands.SpawnCommand;
 import dev.nevah5.mc.lobbyplugin.inventory.LobbyInventory;
 import dev.nevah5.mc.lobbyplugin.inventory.items.NavigationItem;
+import dev.nevah5.mc.lobbyplugin.tools.PlayerTool;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -23,7 +23,6 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
-import java.util.regex.Pattern;
 
 public class LobbyPlugin extends JavaPlugin implements Listener {
     private LobbyConfig lobbyConfig;
@@ -102,6 +101,7 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
                 ChatColor.GRAY, ChatColor.BLUE,
                 ChatColor.BOLD, ChatColor.GRAY));
         player.setPlayerListFooter("\n\n\n");
+        player.setPlayerListName(new PlayerTool(player).getPlayerPrefix()+ChatColor.RESET+ChatColor.GRAY+player.getName());
     }
 
     @EventHandler
@@ -154,18 +154,7 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
     @EventHandler
     public void onMessage(AsyncPlayerChatEvent asyncPlayerChatEvent){
         Player player = asyncPlayerChatEvent.getPlayer();
-        String prefix = lobbyConfig.DEFAULT_PREFIX;
-
-        // Set Prefix of player
-        if(player.hasPermission("group.owner")) {
-            prefix = lobbyConfig.OWNER_PREFIX;
-        } else if(player.hasPermission("group.admin")) {
-            prefix = lobbyConfig.ADMIN_PREFIX;
-        } else if (player.hasPermission("group.mod")) {
-            prefix = lobbyConfig.MOD_PREFIX;
-        } else if (player.hasPermission("group.friend")) {
-            prefix = lobbyConfig.FRIEND_PREFIX;
-        }
+        String prefix = new PlayerTool(player).getPlayerPrefix();
 
         // Set message Format
         asyncPlayerChatEvent.setFormat(prefix + ChatColor.RESET + ChatColor.GRAY +
