@@ -1,12 +1,15 @@
 package dev.nevah5.mc.lobbyplugin.tools;
 
 import dev.nevah5.mc.lobbyplugin.LobbyConfig;
+import dev.nevah5.mc.lobbyplugin.LobbyPlugin;
+import org.bukkit.entity.Player;
 
 public class PlayerTool {
     org.bukkit.entity.Player player;
-    LobbyConfig lobbyConfig = new LobbyConfig();
+    LobbyConfig lobbyConfig;
 
-    public PlayerTool(org.bukkit.entity.Player player){
+    public PlayerTool(LobbyConfig config, Player player){
+        lobbyConfig = config;
         this.player = player;
     }
 

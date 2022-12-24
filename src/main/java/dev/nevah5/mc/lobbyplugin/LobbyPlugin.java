@@ -22,6 +22,7 @@ import org.bukkit.event.player.*;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class LobbyPlugin extends JavaPlugin implements Listener {
@@ -30,7 +31,7 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         Bukkit.getPluginManager().registerEvents(this, this);
-        lobbyConfig = new LobbyConfig();
+        lobbyConfig = new LobbyConfig(this);
         Objects.requireNonNull(this.getCommand("build")).setExecutor(new BuildCommand(lobbyConfig));
         Objects.requireNonNull(this.getCommand("cc")).setExecutor(new ChatClearCommand(lobbyConfig));
         Objects.requireNonNull(this.getCommand("spawn")).setExecutor(new SpawnCommand());
@@ -102,7 +103,7 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
                 ChatColor.BOLD, ChatColor.GRAY));
         player.setPlayerListFooter(String.format("\n          %s%sServer:%s  Lobby1          \n\n", ChatColor.YELLOW,
                 ChatColor.BOLD, ChatColor.GRAY));
-        player.setPlayerListName(new PlayerTool(player).getPlayerPrefix()+ChatColor.RESET+ChatColor.GRAY+player.getName());
+        player.setPlayerListName(new PlayerTool(lobbyConfig, player).getPlayerPrefix()+ChatColor.RESET+ChatColor.GRAY+player.getName());
     }
 
     @EventHandler
@@ -159,7 +160,7 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
     @EventHandler
     public void onMessage(AsyncPlayerChatEvent asyncPlayerChatEvent){
         Player player = asyncPlayerChatEvent.getPlayer();
-        String prefix = new PlayerTool(player).getPlayerPrefix();
+        String prefix = new PlayerTool(lobbyConfig, player).getPlayerPrefix();
 
         // Set message Format
         asyncPlayerChatEvent.setFormat(prefix + ChatColor.RESET + ChatColor.GRAY +
