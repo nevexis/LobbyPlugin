@@ -6,9 +6,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-public class ChatClear implements CommandExecutor {
+public class ChatClearCommand implements CommandExecutor {
     LobbyConfig lobbyConfig;
-    public ChatClear(LobbyConfig lobbyConfig){ this.lobbyConfig = lobbyConfig; }
+    public ChatClearCommand(LobbyConfig lobbyConfig){ this.lobbyConfig = lobbyConfig; }
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
         for (int i = 0; i < 300; i++){

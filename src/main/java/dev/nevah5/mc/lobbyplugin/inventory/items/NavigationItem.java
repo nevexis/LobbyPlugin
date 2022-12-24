@@ -8,7 +8,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 
 public class NavigationItem {
-    public ItemStack getSpawnItem(){
+    public ItemStack getSpawn(){
         ItemStack item = new ItemStack(Material.FIRE_CHARGE);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(String.format(
@@ -26,7 +26,7 @@ public class NavigationItem {
         return item;
     }
 
-    public ItemStack getVTMCItem(){
+    public ItemStack getVTMC(){
         ItemStack item = new ItemStack(Material.BLACK_DYE);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(String.format(
@@ -48,7 +48,7 @@ public class NavigationItem {
         return item;
     }
 
-    public ItemStack getOwnServerItem(){
+    public ItemStack getOwnServer(){
         ItemStack item = new ItemStack(Material.GRASS_BLOCK);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(String.format(

@@ -1,7 +1,7 @@
 package dev.nevah5.mc.lobbyplugin;
 
 import dev.nevah5.mc.lobbyplugin.commands.BuildCommand;
-import dev.nevah5.mc.lobbyplugin.commands.ChatClear;
+import dev.nevah5.mc.lobbyplugin.commands.ChatClearCommand;
 import dev.nevah5.mc.lobbyplugin.commands.SpawnCommand;
 import dev.nevah5.mc.lobbyplugin.inventory.LobbyInventory;
 import dev.nevah5.mc.lobbyplugin.inventory.items.NavigationItem;
@@ -32,7 +32,7 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
         Bukkit.getPluginManager().registerEvents(this, this);
         lobbyConfig = new LobbyConfig();
         Objects.requireNonNull(this.getCommand("build")).setExecutor(new BuildCommand(lobbyConfig));
-        Objects.requireNonNull(this.getCommand("cc")).setExecutor(new ChatClear(lobbyConfig));
+        Objects.requireNonNull(this.getCommand("cc")).setExecutor(new ChatClearCommand(lobbyConfig));
         Objects.requireNonNull(this.getCommand("spawn")).setExecutor(new SpawnCommand());
     }
 
@@ -116,15 +116,15 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
 
         NavigationItem items = new NavigationItem();
         // check if navigation
-        if(inventoryClickEvent.getCurrentItem().equals(items.getVTMCItem())) {
+        if(inventoryClickEvent.getCurrentItem().equals(items.getVTMC())) {
             lobbyInventory.updatePlayer(player);
             player.closeInventory();
             player.teleport(new Location(player.getWorld(), 0.5, 98, -37.5, 180, 0));
             return;
-        } else if (inventoryClickEvent.getCurrentItem().equals(items.getOwnServerItem())) {
+        } else if (inventoryClickEvent.getCurrentItem().equals(items.getOwnServer())) {
             inventoryClickEvent.setCancelled(true);
             return;
-        } else if (inventoryClickEvent.getCurrentItem().equals(items.getSpawnItem())) {
+        } else if (inventoryClickEvent.getCurrentItem().equals(items.getSpawn())) {
             Location spawnLoc = new Location(player.getWorld(), 0.5, 100, 0.5, 180f, 0);
             player.teleport(spawnLoc);
             return;
