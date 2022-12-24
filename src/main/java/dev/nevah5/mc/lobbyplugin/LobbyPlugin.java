@@ -100,7 +100,8 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
                 "         %sᐅ %s%smc.nevah5.dev %sᐊ         \n\n\n",
                 ChatColor.GRAY, ChatColor.BLUE,
                 ChatColor.BOLD, ChatColor.GRAY));
-        player.setPlayerListFooter("\n\n\n");
+        player.setPlayerListFooter(String.format("\n          %s%sServer:%s  Lobby1          \n\n", ChatColor.YELLOW,
+                ChatColor.BOLD, ChatColor.GRAY));
         player.setPlayerListName(new PlayerTool(player).getPlayerPrefix()+ChatColor.RESET+ChatColor.GRAY+player.getName());
     }
 
