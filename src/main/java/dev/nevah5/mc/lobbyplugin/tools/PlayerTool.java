@@ -15,14 +15,14 @@ public class PlayerTool {
 
     public String getPlayerPrefix(){
         if(player.hasPermission("group.owner")) {
-            return lobbyConfig.OWNER_PREFIX;
+            return lobbyConfig.getConfigurationString("OwnerPrefix");
         } else if(player.hasPermission("group.admin")) {
-            return lobbyConfig.ADMIN_PREFIX;
+            return lobbyConfig.getConfigurationString("AdminPrefix");
         } else if (player.hasPermission("group.mod")) {
-            return lobbyConfig.MOD_PREFIX;
+            return lobbyConfig.getConfigurationString("ModPrefix");
         } else if (player.hasPermission("group.friend")) {
-            return lobbyConfig.FRIEND_PREFIX;
+            return lobbyConfig.getConfigurationString("FriendPrefix");
         }
-        return lobbyConfig.DEFAULT_PREFIX;
+        return lobbyConfig.getConfigurationString("DefaultPrefix");
     }
 }

@@ -39,7 +39,7 @@ public class LobbyConfig {
         keys.add("AdminPrefix");
         keys.add("ModPrefix");
         keys.add("FriendPrefix");
-        keys.add("PlayerPrefix");
+        keys.add("DefaultPrefix");
         return keys;
     }
 
@@ -53,7 +53,7 @@ public class LobbyConfig {
         configContent.add("AdminPrefix: \"&e&lAdmin &8&l| &r\"");
         configContent.add("ModPrefix: \"&9&lMod &8&l| &r\"");
         configContent.add("FriendPrefix: \"&a&lFriend &8&l| &r\"");
-        configContent.add("PlayerPrefix: \"&7&lPlayer &8&l| &r\"");
+        configContent.add("DefaultPrefix: \"&7&lPlayer &8&l| &r\"");
         return configContent;
     }
 
@@ -111,16 +111,4 @@ public class LobbyConfig {
         String value = config.get(key);
         return value.equals("true");
     }
-    public final String SERVER_PREFIX = String.format("%s%sServer %s>> %s",
-            ChatColor.AQUA, ChatColor.BOLD, ChatColor.DARK_GRAY, ChatColor.LIGHT_PURPLE);
-    public final String OWNER_PREFIX = String.format("%s%sOwner %s%s| ",
-            ChatColor.RED, ChatColor.BOLD, ChatColor.DARK_GRAY, ChatColor.BOLD);
-    public final String ADMIN_PREFIX = String.format("%s%sAdmin %s%s| ",
-            ChatColor.YELLOW, ChatColor.BOLD, ChatColor.DARK_GRAY, ChatColor.BOLD);
-    public final String MOD_PREFIX = String.format("%s%sMod %s%s| ",
-            ChatColor.BLUE, ChatColor.BOLD, ChatColor.DARK_GRAY, ChatColor.BOLD);
-    public final String FRIEND_PREFIX = String.format("%s%sFriend %s%s| ",
-            ChatColor.GREEN, ChatColor.BOLD, ChatColor.DARK_GRAY, ChatColor.BOLD);
-    public final String DEFAULT_PREFIX = String.format("%s%sPlayer %s%s| ",
-            ChatColor.GRAY, ChatColor.BOLD, ChatColor.DARK_GRAY, ChatColor.BOLD);
 }

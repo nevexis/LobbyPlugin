@@ -103,21 +103,6 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
         player.setPlayerListFooter(String.format("\n          %s%sServer:%s  Lobby1          \n\n", ChatColor.YELLOW,
                 ChatColor.BOLD, ChatColor.GRAY));
         player.setPlayerListName(new PlayerTool(lobbyConfig, player).getPlayerPrefix()+ChatColor.RESET+ChatColor.GRAY+player.getName());
-
-
-        player.sendMessage(
-                lobbyConfig.getConfigurationString("AdminPrefix")+"Admin");
-        player.sendMessage(
-                lobbyConfig.getConfigurationString("OwnerPrefix")+"Owner");
-
-        player.sendMessage(
-                lobbyConfig.getConfigurationString("PlayerPrefix")+"Player");
-        player.sendMessage(
-                lobbyConfig.getConfigurationString("ModPrefix")+"Mod");
-        player.sendMessage(
-                lobbyConfig.getConfigurationString("FriendPrefix")+"Friend");
-        player.sendMessage(
-                lobbyConfig.getConfigurationString("ServerPrefix")+"ServerPrefix");
     }
 
     @EventHandler
