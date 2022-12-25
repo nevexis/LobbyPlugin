@@ -25,15 +25,15 @@ public class PlayerTool {
 
     public void setPlayerTeam(TeamTool teamTool){
         if(player.hasPermission("group.owner")) {
-            teamTool.getGroup_owner().addPlayer(player);
+            teamTool.getGroup_owner().addEntry(player.getName());
         } else if(player.hasPermission("group.admin")) {
-            teamTool.getGroup_admin().addPlayer(player);
+            teamTool.getGroup_admin().addEntry(player.getName());
         } else if (player.hasPermission("group.mod")) {
-            teamTool.getGroup_mod().addPlayer(player);
+            teamTool.getGroup_mod().addEntry(player.getName());
         } else if (player.hasPermission("group.friend")) {
-            teamTool.getGroup_friend().addPlayer(player);
+            teamTool.getGroup_friend().addEntry(player.getName());
         } else {
-            teamTool.getGroup_default().addPlayer(player);
+            teamTool.getGroup_default().addEntry(player.getName());
         }
     }
 }
