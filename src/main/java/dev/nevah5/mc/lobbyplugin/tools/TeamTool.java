@@ -21,44 +21,39 @@ public class TeamTool {
     private Team group_default;
 
     public TeamTool(LobbyConfig lobbyConfig){
-        this.getExistingGroups();
         this.lobbyConfig = lobbyConfig;
         this.initializeGroupTeams();
-    }
-
-    private void getExistingGroups(){
-        ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
-        assert scoreboardManager != null;
-        Scoreboard scoreboard = scoreboardManager.getMainScoreboard();
-
-        this.group_owner = scoreboard.getTeam("group_owner");
-        this.group_admin = scoreboard.getTeam("group_owner");
-        this.group_mod = scoreboard.getTeam("group_admin");
-        this.group_friend = scoreboard.getTeam("group_mod");
-        this.group_friend = scoreboard.getTeam("group_friend");
-        this.group_default = scoreboard.getTeam("group_default");
     }
 
     private void initializeGroupTeams(){
         ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
         assert scoreboardManager != null;
         Scoreboard scoreboard = scoreboardManager.getMainScoreboard();
-        if(this.group_owner != null) this.group_owner = scoreboard.registerNewTeam("group_owner");
-        if(this.group_admin != null) this.group_admin = scoreboard.registerNewTeam("group_admin");
-        if(this.group_mod != null) this.group_mod = scoreboard.registerNewTeam("group_mod");
-        if(this.group_friend != null) this.group_friend = scoreboard.registerNewTeam("group_friend");
-        if(this.group_default != null) this.group_default = scoreboard.registerNewTeam("group_default");
+        if(scoreboard.getTeam("group_owner") == null) {
+            this.group_owner = scoreboard.registerNewTeam("group_owner");
+            this.group_owner.setOption(Team.Option.COLLISION_RULE, Team.OptionStatus.NEVER);
+            this.group_owner.setPrefix(this.lobbyConfig.getConfigurationString("OwnerPrefix"));
+        }
+        if(scoreboard.getTeam("group_admin") == null) {
+            this.group_admin = scoreboard.registerNewTeam("group_admin");
+            this.group_admin.setOption(Team.Option.COLLISION_RULE, Team.OptionStatus.NEVER);
+            this.group_admin.setPrefix(this.lobbyConfig.getConfigurationString("AdminPrefix"));
+        }
+        if(scoreboard.getTeam("group_mod") == null){
+            this.group_mod = scoreboard.registerNewTeam("group_mod");
+            this.group_mod.setOption(Team.Option.COLLISION_RULE, Team.OptionStatus.NEVER);
+            this.group_mod.setPrefix(this.lobbyConfig.getConfigurationString("ModPrefix"));
+        }
+        if(scoreboard.getTeam("group_friend") == null){
+            this.group_friend = scoreboard.registerNewTeam("group_friend");
+            this.group_friend.setOption(Team.Option.COLLISION_RULE, Team.OptionStatus.NEVER);
+            this.group_friend.setPrefix(this.lobbyConfig.getConfigurationString("FriendPrefix"));
+        }
+        if(scoreboard.getTeam("group_default") == null) {
+            this.group_default = scoreboard.registerNewTeam("group_default");
+            this.group_default.setOption(Team.Option.COLLISION_RULE, Team.OptionStatus.NEVER);
+            this.group_default.setPrefix(this.lobbyConfig.getConfigurationString("DefaultPrefix"));
+        }
 
-        this.group_owner.setOption(Team.Option.COLLISION_RULE, Team.OptionStatus.NEVER);
-        this.group_admin.setOption(Team.Option.COLLISION_RULE, Team.OptionStatus.NEVER);
-        this.group_mod.setOption(Team.Option.COLLISION_RULE, Team.OptionStatus.NEVER);
-        this.group_friend.setOption(Team.Option.COLLISION_RULE, Team.OptionStatus.NEVER);
-        this.group_default.setOption(Team.Option.COLLISION_RULE, Team.OptionStatus.NEVER);
-
-        this.group_owner.setPrefix(this.lobbyConfig.getConfigurationString("OwnerPrefix"));
-        this.group_admin.setPrefix(this.lobbyConfig.getConfigurationString("AdminPrefix"));
-        this.group_mod.setPrefix(this.lobbyConfig.getConfigurationString("ModPrefix"));
-        this.group_friend.setPrefix(this.lobbyConfig.getConfigurationString("FriendPrefix"));
-        this.group_default.setPrefix(this.lobbyConfig.getConfigurationString("DefaultPrefix"));
     }
 }
