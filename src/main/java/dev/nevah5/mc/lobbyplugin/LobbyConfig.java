@@ -2,7 +2,6 @@ package dev.nevah5.mc.lobbyplugin;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.checkerframework.checker.regex.qual.Regex;
 
 import java.io.*;
 import java.util.*;
