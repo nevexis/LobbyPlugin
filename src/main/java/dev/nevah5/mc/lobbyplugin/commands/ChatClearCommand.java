@@ -14,7 +14,8 @@ public class ChatClearCommand implements CommandExecutor {
         for (int i = 0; i < 300; i++){
             Bukkit.broadcastMessage("");
         }
-        Bukkit.broadcastMessage(String.format("%sThe chat has been cleared by %s.", lobbyConfig.SERVER_PREFIX,
+        Bukkit.broadcastMessage(String.format("%sThe chat has been cleared by %s.",
+                lobbyConfig.getConfigurationString("ServerPrefix"),
                 sender.getName()));
         Bukkit.broadcastMessage("");
         return true;
