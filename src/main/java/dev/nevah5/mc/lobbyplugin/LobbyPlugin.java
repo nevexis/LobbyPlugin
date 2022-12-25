@@ -6,6 +6,7 @@ import dev.nevah5.mc.lobbyplugin.commands.SpawnCommand;
 import dev.nevah5.mc.lobbyplugin.inventory.LobbyInventory;
 import dev.nevah5.mc.lobbyplugin.inventory.items.NavigationItem;
 import dev.nevah5.mc.lobbyplugin.tools.PlayerTool;
+import dev.nevah5.mc.lobbyplugin.tools.TeamTool;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -25,12 +26,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.Objects;
 
 public class LobbyPlugin extends JavaPlugin implements Listener {
+    private TeamTool teamTool;
     private LobbyConfig lobbyConfig;
     private final LobbyInventory lobbyInventory = new LobbyInventory();
     @Override
     public void onEnable() {
         Bukkit.getPluginManager().registerEvents(this, this);
         lobbyConfig = new LobbyConfig(this);
+        teamTool = new TeamTool(lobbyConfig);
         Objects.requireNonNull(this.getCommand("build")).setExecutor(new BuildCommand(lobbyConfig));
         Objects.requireNonNull(this.getCommand("cc")).setExecutor(new ChatClearCommand(lobbyConfig));
         Objects.requireNonNull(this.getCommand("spawn")).setExecutor(new SpawnCommand());
@@ -159,7 +162,7 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
     @EventHandler
     public void onMessage(AsyncPlayerChatEvent asyncPlayerChatEvent){
         Player player = asyncPlayerChatEvent.getPlayer();
-        String prefix = new PlayerTool(lobbyConfig, player).getPlayerPrefix();
+        String prefix = new PlayerTool(player).getPlayerPrefix(lobbyConfig);
 
         // Set message Format
         asyncPlayerChatEvent.setFormat(prefix + ChatColor.RESET + ChatColor.GRAY +
