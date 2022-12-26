@@ -23,6 +23,8 @@ import org.bukkit.event.player.*;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class LobbyPlugin extends JavaPlugin implements Listener {
@@ -177,5 +179,55 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
             asyncPlayerChatEvent.setMessage(ChatColor.translateAlternateColorCodes('&',
                     asyncPlayerChatEvent.getMessage()));
         }
+    }
+
+    @EventHandler
+    public void onCommand(PlayerCommandPreprocessEvent playerCommandPreprocessEvent){
+        Player player = playerCommandPreprocessEvent.getPlayer();
+        List<String> disallowedCommands = new ArrayList<>();
+        disallowedCommands.add("bukkit:?");
+        disallowedCommands.add("bukkit:about");
+        disallowedCommands.add("bukkit:help");
+        disallowedCommands.add("bukkit:pl");
+        disallowedCommands.add("bukkit:plugins");
+        disallowedCommands.add("bukkit:reload");
+        disallowedCommands.add("bukkit:rl");
+        disallowedCommands.add("bukkit:timings");
+        disallowedCommands.add("bukkit:ver");
+        disallowedCommands.add("bukkit:version");
+        disallowedCommands.add("?");
+        disallowedCommands.add("help");
+        disallowedCommands.add("pl");
+        disallowedCommands.add("plugins");
+        disallowedCommands.add("reload");
+        disallowedCommands.add("rl");
+        disallowedCommands.add("timings");
+        disallowedCommands.add("ver");
+        disallowedCommands.add("version");
+        disallowedCommands.add("bungee");
+        disallowedCommands.add("icanhasbukkit");
+        disallowedCommands.add("list");
+        disallowedCommands.add("lp");
+        disallowedCommands.add("luckperms");
+        disallowedCommands.add("perm");
+        disallowedCommands.add("permission");
+        disallowedCommands.add("permissions");
+        disallowedCommands.add("perms");
+        disallowedCommands.add("luckperms:lp");
+        disallowedCommands.add("luckperms:luckperms");
+        disallowedCommands.add("luckperms:perm");
+        disallowedCommands.add("luckperms:permission");
+        disallowedCommands.add("luckperms:permissions");
+        disallowedCommands.add("luckperms:perms");
+        if(!player.isOp()){
+            disallowedCommands.forEach(command -> {
+                if(playerCommandPreprocessEvent.getMessage().toLowerCase().equalsIgnoreCase("/"+command)) {
+                    player.sendMessage(lobbyConfig.getConfigurationString("ServerPrefix")+"You are not allowed to" +
+                            " do that!");
+                    playerCommandPreprocessEvent.setCancelled(true);
+                }
+            });
+        }
+
     }
 }
