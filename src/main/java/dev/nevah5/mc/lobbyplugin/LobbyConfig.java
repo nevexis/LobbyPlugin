@@ -31,7 +31,7 @@ public class LobbyConfig {
             e.printStackTrace();
         }
     }
-    public ArrayList<String> getConfigurationKeys(){
+    private ArrayList<String> getConfigurationKeys(){
         ArrayList<String> keys = new ArrayList<>();
         keys.add("ServerPrefix");
         keys.add("OwnerPrefix");
@@ -42,7 +42,7 @@ public class LobbyConfig {
         return keys;
     }
 
-    public List<String> getDefaultConfiguration(){
+    private List<String> getDefaultConfiguration(){
         List<String> configContent = new ArrayList<>();
         configContent.add("# LobbyConfig Version "+plugin.getDescription().getVersion());
         configContent.add("# Author: Nevah5");
