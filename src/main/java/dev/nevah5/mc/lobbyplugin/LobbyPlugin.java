@@ -11,6 +11,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -163,6 +165,8 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
 
         if(player.getInventory().getItemInMainHand().getType() == Material.COMPASS) {
             lobbyInventory.openNavigation(player);
+        } else if (player.getInventory().getItemInMainHand().getType() == Material.NETHER_STAR){
+            player.sendMessage(lobbyConfig.getConfigurationString("ServerPrefix")+"This feature is coming soon.");
         }
     }
 
@@ -197,6 +201,7 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
         disallowedCommands.add("bukkit:ver");
         disallowedCommands.add("bukkit:version");
         disallowedCommands.add("?");
+        disallowedCommands.add("about");
         disallowedCommands.add("help");
         disallowedCommands.add("pl");
         disallowedCommands.add("plugins");

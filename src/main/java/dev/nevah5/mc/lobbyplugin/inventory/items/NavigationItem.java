@@ -6,6 +6,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NavigationItem {
     public ItemStack getSpawn(){
@@ -66,6 +67,24 @@ public class NavigationItem {
         lore.add("");
         meta.setLore(lore);
 
+        item.setItemMeta(meta);
+        return item;
+    }
+
+    public ItemStack getLobby(String name, boolean isConnected){
+        ItemStack item = new ItemStack(Material.QUARTZ_BLOCK);
+        if(isConnected) item = new ItemStack(Material.RED_TERRACOTTA);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(String.format("%s%s", ChatColor.BOLD, name));
+        List<String> lore = new ArrayList<>();
+        lore.add("");
+        if(isConnected){
+            lore.add(ChatColor.GRAY+"You are currently connected to this lobby.");
+        } else {
+            lore.add(ChatColor.GRAY+"Click to connect to "+name);
+        }
+        lore.add("");
+        meta.setLore(lore);
         item.setItemMeta(meta);
         return item;
     }
