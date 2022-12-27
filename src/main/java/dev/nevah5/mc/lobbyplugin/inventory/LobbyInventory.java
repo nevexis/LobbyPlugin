@@ -10,6 +10,7 @@ public class LobbyInventory {
     public void updatePlayer(Player player){
         HotbarItem items = new HotbarItem();
         player.getInventory().setItem(0, items.getNavigator());
+        player.getInventory().setItem(8, items.getLobbySelector());
     }
 
     public void openNavigation(Player player){
