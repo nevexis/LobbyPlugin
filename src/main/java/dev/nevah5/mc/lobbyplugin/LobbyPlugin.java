@@ -105,8 +105,8 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
                 "         %sᐅ %s%smc.nevah5.dev %sᐊ         \n\n\n",
                 ChatColor.GRAY, ChatColor.BLUE,
                 ChatColor.BOLD, ChatColor.GRAY));
-        player.setPlayerListFooter(String.format("\n          %s%sServer:%s  Lobby1          \n\n", ChatColor.YELLOW,
-                ChatColor.BOLD, ChatColor.GRAY));
+        player.setPlayerListFooter(String.format("\n          %s%sServer:%s  %s          \n\n", ChatColor.YELLOW,
+                ChatColor.BOLD, ChatColor.GRAY, lobbyConfig.getConfigurationString("LobbyName")));
         player.setPlayerListName(new PlayerTool(player).getPlayerPrefix(lobbyConfig)+ChatColor.RESET+ChatColor.GRAY+player.getName());
 
         // team
@@ -145,6 +145,7 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
             lobbyInventory.updatePlayer(player);
         }
     }
+
     @EventHandler
     public void onInventoryDrag(InventoryDragEvent inventoryDragEvent){
         Player player = (Player) inventoryDragEvent.getWhoClicked();

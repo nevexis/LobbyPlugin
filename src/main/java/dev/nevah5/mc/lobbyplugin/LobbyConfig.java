@@ -39,6 +39,7 @@ public class LobbyConfig {
         keys.add("ModPrefix");
         keys.add("FriendPrefix");
         keys.add("DefaultPrefix");
+        keys.add("LobbyName");
         return keys;
     }
 
@@ -53,6 +54,8 @@ public class LobbyConfig {
         configContent.add("ModPrefix: \"&9&lMod &8&l| &r\"");
         configContent.add("FriendPrefix: \"&a&lFriend &8&l| &r\"");
         configContent.add("DefaultPrefix: \"&7&lPlayer &8&l| &r\"");
+        configContent.add("# -- Lobby Settings --");
+        configContent.add("LobbyName: \"Lobby#\"");
         return configContent;
     }
 
