@@ -1,9 +1,15 @@
 package dev.nevah5.mc.lobbyplugin.inventory.items;
 
+import dev.nevah5.mc.lobbyplugin.LobbyConfig;
+import dev.nevah5.mc.lobbyplugin.tools.PlayerTool;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Item;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.profile.PlayerProfile;
 
 public class HotbarItem {
     public ItemStack getNavigator(){
@@ -22,5 +28,15 @@ public class HotbarItem {
                 ChatColor.BOLD, ChatColor.DARK_GRAY));
         compass.setItemMeta(meta);
         return compass;
+    }
+
+    public ItemStack getPlayerSettings(LobbyConfig lobbyConfig, Player player){
+        PlayerTool playerTool = new PlayerTool(player);
+        ItemStack item = new ItemStack(Material.PLAYER_HEAD);
+        SkullMeta meta = (SkullMeta) item.getItemMeta();
+        meta.setOwnerProfile(player.getPlayerProfile());
+        meta.setDisplayName(playerTool.getPlayerPrefix(lobbyConfig) + ChatColor.GRAY + player.getName());
+        item.setItemMeta(meta);
+        return item;
     }
 }

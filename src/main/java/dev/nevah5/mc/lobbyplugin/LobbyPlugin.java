@@ -89,7 +89,7 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
         player.setInvulnerable(true);
         // Inventory
         player.getInventory().clear();
-        lobbyInventory.updatePlayer(player);
+        lobbyInventory.updatePlayer(lobbyConfig, player);
         player.teleport(spawnLoc);
 
         // welcome message ᐅᐊ
@@ -128,7 +128,7 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
         NavigationItem items = new NavigationItem();
         // check if navigation
         if(inventoryClickEvent.getCurrentItem().equals(items.getVTMC())) {
-            lobbyInventory.updatePlayer(player);
+            lobbyInventory.updatePlayer(lobbyConfig, player);
             player.closeInventory();
             player.teleport(new Location(player.getWorld(), 0.5, 98, -37.5, 180, 0));
             return;
@@ -144,7 +144,7 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
         if(!lobbyConfig.playersEnableBuilding.contains(player)) {
             inventoryClickEvent.setCancelled(true);
             inventoryClickEvent.setCurrentItem(null);
-            lobbyInventory.updatePlayer(player);
+            lobbyInventory.updatePlayer(lobbyConfig, player);
         }
     }
 
@@ -153,7 +153,7 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
         Player player = (Player) inventoryDragEvent.getWhoClicked();
         if(!lobbyConfig.playersEnableBuilding.contains(player)) {
             inventoryDragEvent.setCancelled(true);
-            lobbyInventory.updatePlayer(player);
+            lobbyInventory.updatePlayer(lobbyConfig, player);
         }
     }
 

@@ -8,9 +8,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 public class LobbyInventory {
-    public void updatePlayer(Player player){
+    public void updatePlayer(LobbyConfig lobbyConfig, Player player){
         HotbarItem items = new HotbarItem();
         player.getInventory().setItem(0, items.getNavigator());
+        player.getInventory().setItem(7, items.getPlayerSettings(lobbyConfig, player));
         player.getInventory().setItem(8, items.getLobbySelector());
     }
 
