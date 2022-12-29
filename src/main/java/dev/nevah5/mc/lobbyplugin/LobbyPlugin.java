@@ -104,7 +104,7 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
 
         // tab list
         player.setPlayerListHeader(String.format(
-                "         %sᐅ %s%smc.nevah5.dev %sᐊ         \n\n\n",
+                "\n         %sᐅ %s%smc.nevah5.dev %sᐊ         \n\n",
                 ChatColor.GRAY, ChatColor.BLUE,
                 ChatColor.BOLD, ChatColor.GRAY));
         player.setPlayerListFooter(String.format("\n          %s%sServer:%s  %s          \n\n", ChatColor.YELLOW,
@@ -131,6 +131,11 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
             lobbyInventory.updatePlayer(lobbyConfig, player);
             player.closeInventory();
             player.teleport(new Location(player.getWorld(), 0.5, 98, -37.5, 180, 0));
+            return;
+        } else if(inventoryClickEvent.getCurrentItem().equals(items.getJungs())) {
+            lobbyInventory.updatePlayer(lobbyConfig, player);
+            player.closeInventory();
+            player.teleport(new Location(player.getWorld(), -6.5, 98, -36.5, 180, 0));
             return;
         } else if (inventoryClickEvent.getCurrentItem().equals(items.getOwnServer())) {
             inventoryClickEvent.setCancelled(true);

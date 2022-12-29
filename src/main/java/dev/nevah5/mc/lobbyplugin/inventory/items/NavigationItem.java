@@ -49,6 +49,24 @@ public class NavigationItem {
         return item;
     }
 
+    public ItemStack getJungs(){
+        ItemStack item = new ItemStack(Material.GOLD_BLOCK);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(String.format(
+                "%s▶ %s%sJungs %s%s(1.19.3) %s◀",
+                ChatColor.DARK_GRAY, ChatColor.YELLOW, ChatColor.BOLD, ChatColor.RESET,
+                ChatColor.GRAY, ChatColor.DARK_GRAY)
+        );
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add("");
+        lore.add(ChatColor.GRAY + "≫ Server for friends of Nevah5.");
+        lore.add("");
+        meta.setLore(lore);
+
+        item.setItemMeta(meta);
+        return item;
+    }
+
     public ItemStack getOwnServer(){
         ItemStack item = new ItemStack(Material.GRASS_BLOCK);
         ItemMeta meta = item.getItemMeta();
