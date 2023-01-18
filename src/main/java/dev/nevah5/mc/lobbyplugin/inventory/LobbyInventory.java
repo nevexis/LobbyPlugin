@@ -19,6 +19,7 @@ public class LobbyInventory {
         NavigationItem items = new NavigationItem();
         Inventory inventory = Bukkit.createInventory(null, 36, "Navigation");
         inventory.setItem(13, items.getSpawn());
+        inventory.setItem(20, items.getRobin());
         inventory.setItem(21, items.getJungs());
         inventory.setItem(22, items.getVTMC());
         inventory.setItem(23, items.getOwnServer());

@@ -61,6 +61,9 @@ public class NavigationItem {
         lore.add("");
         lore.add(ChatColor.GRAY + "≫ Server for friends of Nevah5.");
         lore.add("");
+        lore.add(String.format("%s▶ Server Owner ◀", ChatColor.GRAY));
+        lore.add(ChatColor.GRAY+"⬦ Nevah5");
+        lore.add("");
         meta.setLore(lore);
 
         item.setItemMeta(meta);
@@ -82,6 +85,27 @@ public class NavigationItem {
         lore.add(ChatColor.GRAY + "≫ to create their own servers to play on.");
         lore.add("");
         lore.add(String.format("%s▶ contact@nevah5.dev ◀", ChatColor.GRAY));
+        lore.add("");
+        meta.setLore(lore);
+
+        item.setItemMeta(meta);
+        return item;
+    }
+
+    public ItemStack getRobin(){
+        ItemStack item = new ItemStack(Material.EMERALD_BLOCK);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(String.format(
+                "%s▶ %s%sRobin %s%s(1.19.3) %s◀",
+                ChatColor.DARK_GRAY, ChatColor.GREEN, ChatColor.BOLD, ChatColor.RESET,
+                ChatColor.GRAY, ChatColor.DARK_GRAY)
+        );
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add("");
+        lore.add(ChatColor.GRAY + "≫ Server for Robin.");
+        lore.add("");
+        lore.add(String.format("%s▶ Server Owner ◀", ChatColor.GRAY));
+        lore.add(ChatColor.GRAY+"⬦ Robin6951");
         lore.add("");
         meta.setLore(lore);
 
