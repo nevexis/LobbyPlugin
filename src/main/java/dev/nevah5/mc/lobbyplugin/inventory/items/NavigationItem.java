@@ -113,6 +113,27 @@ public class NavigationItem {
         return item;
     }
 
+    public ItemStack getAngel(){
+        ItemStack item = new ItemStack(Material.DIAMOND_BLOCK);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(String.format(
+                "%s▶ %s%sAngel %s%s(1.19.3) %s◀",
+                ChatColor.DARK_GRAY, ChatColor.BLUE, ChatColor.BOLD, ChatColor.RESET,
+                ChatColor.GRAY, ChatColor.DARK_GRAY)
+        );
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add("");
+        lore.add(ChatColor.GRAY + "≫ Server for Engjell.");
+        lore.add("");
+        lore.add(String.format("%s▶ Server Owner ◀", ChatColor.GRAY));
+        lore.add(ChatColor.GRAY+"⬦ Engjell04");
+        lore.add("");
+        meta.setLore(lore);
+
+        item.setItemMeta(meta);
+        return item;
+    }
+
     public ItemStack getLobby(String name, boolean isConnected){
         ItemStack item = new ItemStack(Material.QUARTZ_BLOCK);
         if(isConnected) item = new ItemStack(Material.RED_TERRACOTTA);

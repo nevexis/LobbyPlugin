@@ -148,6 +148,10 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
             Location spawnLoc = new Location(player.getWorld(), -8.5, 98, -34.5, 90f, 0);
             player.teleport(spawnLoc);
             return;
+        } else if (inventoryClickEvent.getCurrentItem().equals(items.getAngel())) {
+            Location spawnLoc = new Location(player.getWorld(), 9.5, 98, -34.5, -90f, 0);
+            player.teleport(spawnLoc);
+            return;
         }
 
         if(!lobbyConfig.playersEnableBuilding.contains(player)) {

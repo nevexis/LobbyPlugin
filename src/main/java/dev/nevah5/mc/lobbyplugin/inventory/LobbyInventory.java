@@ -23,6 +23,7 @@ public class LobbyInventory {
         inventory.setItem(21, items.getJungs());
         inventory.setItem(22, items.getVTMC());
         inventory.setItem(23, items.getOwnServer());
+        inventory.setItem(24, items.getAngel());
         player.openInventory(inventory);
     }
 
