@@ -102,13 +102,6 @@ public class LobbyPlugin extends JavaPlugin implements Listener {
                 playerJoinEvent.getPlayer().getName()));
         player.sendMessage("");
 
-        // tab list
-        player.setPlayerListHeader(String.format(
-                "\n         %sᐅ %s%smc.nevah5.dev %sᐊ         \n\n",
-                ChatColor.GRAY, ChatColor.BLUE,
-                ChatColor.BOLD, ChatColor.GRAY));
-        player.setPlayerListFooter(String.format("\n          %s%sServer:%s  %s          \n\n", ChatColor.YELLOW,
-                ChatColor.BOLD, ChatColor.GRAY, lobbyConfig.getConfigurationString("LobbyName")));
         player.setPlayerListName(new PlayerTool(player).getPlayerPrefix(lobbyConfig)+ChatColor.RESET+ChatColor.GRAY+player.getName());
 
         // team
